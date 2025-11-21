@@ -12,9 +12,6 @@ ZipFile::ZipFile(ZipFileHeader header,std::vector<char>& buffer, size_t offset):
         return;
     }
 
-    if (m_info.m_uncompressedCRC == 0) {
-        printCurrentFileToConsole();
-    }
 
     std::vector<char> fileNameData(m_info.m_fileNameLength);
     fileNameData.assign(buffer.begin() + offset + HEADER_OFFSET, buffer.begin() + offset + HEADER_OFFSET + m_info.m_fileNameLength);

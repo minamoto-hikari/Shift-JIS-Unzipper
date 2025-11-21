@@ -117,7 +117,8 @@ int main(int argc, char* argv[])
             std::ofstream file(file_path, std::ios_base::in | std::ios_base::out | std::ios_base::app | std::ios_base::binary);
 
             file.write(zipFileData->data(), zipFileData->size());
-            printWString(L"Extracted file \"" + file_path.filename().wstring() + L"\" to " + file_path.parent_path().wstring() + L"\n");
+            int percent = (i+1) * 100 / file_offsets.size();
+            printWString(L"Extracted: \"" + file_path.filename().wstring() + L"\" -> \"" + file_path.parent_path().wstring() + L"\" (" + std::to_wstring(percent) + L"%)\n");
             file.flush();
 
             file.close();
